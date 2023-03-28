@@ -1,9 +1,14 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+interface IContainerProps {
+  type?: string;
+}
+
+export const Container = styled.div<IContainerProps>`
   cursor: pointer;
   img {
     border-radius: 8px;
+    width: ${(props) => (props.type === "descktop" ? "250px" : "300px")};
   }
 `;
 

@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const ContentContainer = styled.div`
   background: white;
   position: fixed;
+  z-index: 10;
   top: 0;
   color: var(--gold-black);
   width: 100%;
@@ -70,7 +71,7 @@ export const ProgessBar = styled.div`
     justify-content: center;
     i {
       font-size: 23px;
-      color: gray;
+      color: var(--gold);
     }
   }
 `;

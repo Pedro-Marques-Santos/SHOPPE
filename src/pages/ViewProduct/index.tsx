@@ -1,15 +1,13 @@
-import { Footer } from "../../components/footer-components/Footer";
 import { Header } from "../../components/header-components/Header";
-import { ShopDescktop } from "../../components/ShopDescktop";
+import { Product } from "../../components/product-components/Product";
 import { Container, ContentContainer } from "./styles";
 
-export function Shop() {
+export function ViewProduct() {
   return (
     <ContentContainer>
       <Header />
       <Container>
-        <ShopDescktop />
-        <Footer />
+        <Product />
       </Container>
     </ContentContainer>
   );

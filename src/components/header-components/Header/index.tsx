@@ -30,8 +30,8 @@ export function Header() {
           </ProgessBar>
           <Pages>
             <Item>Shop</Item>
-            <Item>Blog</Item>
             <Item>Our Story</Item>
+            <Item>Home</Item>
             <LineMenu></LineMenu>
             <IconMenu>
               <i className="material-symbols-outlined">search</i>
