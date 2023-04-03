@@ -6,7 +6,7 @@ interface IImgProduct {
 
 export function ImgProduct({ img }: IImgProduct) {
   return (
-    <Container href="##">
+    <Container>
       <img src={img} alt="" />
     </Container>
   );

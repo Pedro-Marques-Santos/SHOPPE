@@ -12,9 +12,9 @@ import {
 
 interface ICardTextProduct {
   title: string;
-  price: string;
+  price: number;
   aboutProduct: string;
-  sizeProduct: string;
+  sizeProduct: number;
   categoryProduct: string;
 }
 
@@ -28,7 +28,10 @@ export function CardTextProduct({
   return (
     <Container>
       <Title>{title}</Title>
-      <Price>{price}</Price>
+      <Price>
+        {" "}
+        {price.toLocaleString("pt-br", { style: "currency", currency: "BRL" })}
+      </Price>
       <AboutProduct>{aboutProduct}</AboutProduct>
       <ContainerQtdProductsAndButtonCart>
         <QtdProduct />

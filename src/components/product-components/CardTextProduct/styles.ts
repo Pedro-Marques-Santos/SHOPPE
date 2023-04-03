@@ -24,11 +24,13 @@ export const Price = styled.div`
   font-size: 17px;
   font-weight: 400;
   line-height: 24px;
+  border: ;
   letter-spacing: -0.01em;
   text-align: left;
 `;
 
 export const AboutProduct = styled.div`
+  height: 108px;
   margin-top: 12px;
   font-size: 16px;
   font-weight: 400;

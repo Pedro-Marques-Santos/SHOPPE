@@ -112,3 +112,9 @@ export const Item = styled.div`
     margin-bottom: 18px;
   }
 `;
+
+export const QtdCart = styled.span`
+  height: 0px;
+  width: 17.5px;
+  color: var(--gold);
+`;

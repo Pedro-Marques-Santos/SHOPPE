@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.a`
+export const Container = styled.div`
   cursor: pointer;
   width: 50%;
   img {
