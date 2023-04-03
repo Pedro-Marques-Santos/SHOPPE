@@ -8,14 +8,14 @@ import {
   ErrorTitle,
 } from "./styles";
 
-import img from "../../../assets/images-card/Hair Pin Set of 3.svg";
 import { ImgProduct } from "../ImgProduct";
 import { CardTextProduct } from "../CardTextProduct";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { ProductsContext } from "../../../context/Products";
 
 interface IProductProps {
   id: number;
+  typeProduct: string;
 }
 
 interface IProduct {
@@ -24,9 +24,10 @@ interface IProduct {
   size: number;
   img: string;
   id: number;
+  img2?: string;
 }
 
-export function Product({ id }: IProductProps) {
+export function Product({ id, typeProduct }: IProductProps) {
   const navegate = useNavigate();
   const productsContext = useContext(ProductsContext);
 
@@ -34,7 +35,20 @@ export function Product({ id }: IProductProps) {
     productsContext?.products?.AllProducts ?? []
   );
 
-  const productSelected = product.find((e) => e.id === id);
+  const bestprodct =
+    (productsContext?.products?.BestProduct as unknown as IProduct) ??
+    undefined;
+
+  let productSelected: IProduct | undefined;
+  typeProduct === "common"
+    ? (productSelected = product.find((e) => e.id === id) as
+        | IProduct
+        | undefined)
+    : (productSelected = bestprodct);
+
+  function goPageHome() {
+    navegate("/");
+  }
 
   if (
     !productsContext ||
@@ -42,10 +56,6 @@ export function Product({ id }: IProductProps) {
     !productsContext.products?.AllProducts
   ) {
     return <></>;
-  }
-
-  function goPageHome() {
-    navegate("/");
   }
 
   if (!productSelected) {
@@ -62,7 +72,7 @@ export function Product({ id }: IProductProps) {
 
   return (
     <Container>
-      <ImgProduct img={productSelected.img} />
+      <ImgProduct img={productSelected.img2 ?? productSelected.img} />
       <CardTextProduct
         title={productSelected.name}
         price={productSelected.price}

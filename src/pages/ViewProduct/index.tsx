@@ -8,21 +8,25 @@ import { useEffect, useState } from "react";
 interface CustomizedState {
   data: {
     id: number;
+    typeProduct: string;
   } | null;
 }
 
 export function ViewProduct() {
   const [idProduct, setIdProduct] = useState(0);
+  const [typeProduct, setTypeProduct] = useState("");
 
   const location = useLocation();
 
   const state = location.state as CustomizedState;
 
   const id = state!.data!.id;
+  const typeproduct = state!.data!.typeProduct;
 
   useEffect(() => {
     setIdProduct(id);
-  }, [id]);
+    setTypeProduct(typeproduct);
+  }, [id, typeProduct, typeproduct]);
 
   if (!id) {
     return <>Error</>;
@@ -32,7 +36,7 @@ export function ViewProduct() {
     <ContentContainer>
       <Header />
       <Container>
-        <Product id={idProduct} />
+        <Product id={idProduct} typeProduct={typeProduct} />
       </Container>
     </ContentContainer>
   );

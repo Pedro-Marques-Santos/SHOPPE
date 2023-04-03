@@ -5,6 +5,7 @@ import KaedeHairPinSetOf3 from '../assets/images-card/Kaede Hair Pin Set Of 3.sv
 import HairPinSetof3 from '../assets/images-card/Hair Pin Set of 3.svg'
 import PlaineNecklace from '../assets/images-card/Plaine Necklace.svg'
 import YukiHairPinSetof3 from '../assets/images-card/Yuki Hair Pin Set of 3.svg'
+import ImgProfile2 from '../assets/bestproduct2.svg';
 
 const data = [
   {
@@ -15,6 +16,7 @@ const data = [
       "price": 68.00,
       "size": 12,
       "img": Goldbighoops,
+      "img2": ImgProfile2,
     }
   ,
   "AllProducts": 

@@ -15,6 +15,15 @@ interface IAllproducts {
   YukiHairPinSetof3: {};
 }
 
+interface IProduct {
+  name: string;
+  price: number;
+  size: number;
+  img: string;
+  id: number;
+  img2?: string;
+}
+
 interface IBestProducts {
   BestProduct: {
     Goldbighoops: {};
@@ -23,7 +32,7 @@ interface IBestProducts {
 
 interface IProducts {
   AllProducts: IAllproducts;
-  BestProduct: IBestProducts;
+  BestProduct: IBestProducts | IProduct[];
 }
 
 type TProductsContextProps = {

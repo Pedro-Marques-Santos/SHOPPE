@@ -18,6 +18,7 @@ export function ShopCard({ img, name, price, type, id }: IShopCard) {
       state: {
         data: {
           id: id,
+          typeProduct: "common",
         },
       },
     });

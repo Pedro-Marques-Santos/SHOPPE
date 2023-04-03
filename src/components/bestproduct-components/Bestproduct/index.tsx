@@ -1,6 +1,7 @@
 import { Container, ContainerProduct, Price, Product, Title } from "./styles";
 import { useContext } from "react";
 import { ProductsContext } from "../../../context/Products";
+import { useNavigate } from "react-router-dom";
 
 interface IProduct {
   name: string;
@@ -11,6 +12,7 @@ interface IProduct {
 }
 
 export function Bestproduct() {
+  const navegate = useNavigate();
   const productsContext = useContext(ProductsContext);
 
   if (
@@ -23,6 +25,17 @@ export function Bestproduct() {
 
   const product = productsContext.products.BestProduct as unknown as IProduct;
 
+  function goPageViewProduct() {
+    navegate("/ViewProduct", {
+      state: {
+        data: {
+          id: product.id,
+          typeProduct: "best",
+        },
+      },
+    });
+  }
+
   return (
     <Container>
       <Product>
@@ -34,7 +47,7 @@ export function Bestproduct() {
               currency: "BRL",
             })}
           </Price>
-          <button>View Product</button>
+          <button onClick={goPageViewProduct}>View Product</button>
         </ContainerProduct>
       </Product>
       <img src={product.img} alt="img" />

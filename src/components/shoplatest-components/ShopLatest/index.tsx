@@ -10,6 +10,7 @@ interface IProduct {
   size: number;
   img: string;
   id: number;
+  img2?: string;
 }
 
 export function ShopLatest() {
