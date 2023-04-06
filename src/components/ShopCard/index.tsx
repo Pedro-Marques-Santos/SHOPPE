@@ -2,6 +2,16 @@
 import { Container, Price, Title } from "./styles";
 import { useNavigate } from "react-router-dom";
 
+interface IProduct {
+  name: string;
+  price: number;
+  size: number;
+  img: string;
+  id: number;
+  img2?: string;
+  qtd?: number;
+}
+
 interface IShopCard {
   img: string;
   name: string;

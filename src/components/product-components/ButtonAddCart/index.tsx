@@ -1,5 +1,9 @@
 import { Container } from "./styles";
 
-export function ButtonAddCart() {
-  return <Container>ADD TO CART</Container>;
+interface IButtonAddCart {
+  handleAddToCard: () => void;
+}
+
+export function ButtonAddCart({ handleAddToCard }: IButtonAddCart) {
+  return <Container onClick={handleAddToCard}>ADD TO CART</Container>;
 }

@@ -16,6 +16,7 @@ import { ProductsContext } from "../../../context/Products";
 interface IProductProps {
   id: number;
   typeProduct: string;
+  listProducts: IProduct[];
 }
 
 interface IProduct {
@@ -25,9 +26,10 @@ interface IProduct {
   img: string;
   id: number;
   img2?: string;
+  qtd?: number;
 }
 
-export function Product({ id, typeProduct }: IProductProps) {
+export function Product({ id, typeProduct, listProducts }: IProductProps) {
   const navegate = useNavigate();
   const productsContext = useContext(ProductsContext);
 
@@ -74,6 +76,7 @@ export function Product({ id, typeProduct }: IProductProps) {
     <Container>
       <ImgProduct img={productSelected.img2 ?? productSelected.img} />
       <CardTextProduct
+        product={productSelected}
         title={productSelected.name}
         price={productSelected.price}
         aboutProduct={
@@ -81,6 +84,7 @@ export function Product({ id, typeProduct }: IProductProps) {
         }
         sizeProduct={productSelected.size}
         categoryProduct={"Fashion, Style"}
+        listProducts={listProducts}
       />
     </Container>
   );

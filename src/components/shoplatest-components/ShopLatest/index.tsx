@@ -11,6 +11,7 @@ interface IProduct {
   img: string;
   id: number;
   img2?: string;
+  qtd?: number;
 }
 
 export function ShopLatest() {

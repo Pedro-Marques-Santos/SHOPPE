@@ -9,9 +9,15 @@ interface IProduct {
   size: number;
   img: string;
   id: number;
+  img2?: string;
+  qtd?: number;
 }
 
-export function Descktop() {
+interface IDescktop {
+  search: string;
+}
+
+export function Descktop({ search }: IDescktop) {
   const productsContext = useContext(ProductsContext);
 
   if (
@@ -24,18 +30,38 @@ export function Descktop() {
 
   const allproducts = Object.values(productsContext.products.AllProducts);
 
+  const lowerSearch = search.toLocaleLowerCase();
+
+  const filteredAllProducts: IProduct[] =
+    search.length > 0
+      ? allproducts.filter((product: IProduct) =>
+          product.name.toLocaleLowerCase().includes(lowerSearch)
+        )
+      : [];
+
   return (
     <Container>
-      {allproducts.map((product: IProduct) => (
-        <ShopCard
-          type="descktop"
-          key={product.id}
-          img={product.img}
-          name={product.name}
-          price={product.price}
-          id={product.id}
-        />
-      ))}
+      {search.length > 0
+        ? filteredAllProducts.map((product: IProduct) => (
+            <ShopCard
+              type="descktop"
+              key={product.id}
+              img={product.img}
+              name={product.name}
+              price={product.price}
+              id={product.id}
+            />
+          ))
+        : allproducts.map((product: IProduct) => (
+            <ShopCard
+              type="descktop"
+              key={product.id}
+              img={product.img}
+              name={product.name}
+              price={product.price}
+              id={product.id}
+            />
+          ))}
     </Container>
   );
 }

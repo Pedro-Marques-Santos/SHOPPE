@@ -5,10 +5,22 @@ import { Container, ContentContainer } from "./styles";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+interface IProduct {
+  name: string;
+  price: number;
+  size: number;
+  img: string;
+  id: number;
+  img2?: string;
+  qtd?: number;
+}
+
 interface CustomizedState {
   data: {
     id: number;
     typeProduct: string;
+    listProducts: IProduct[];
+    setListProducts: React.Dispatch<React.SetStateAction<IProduct[]>>;
   } | null;
 }
 
@@ -22,6 +34,7 @@ export function ViewProduct() {
 
   const id = state!.data!.id;
   const typeproduct = state!.data!.typeProduct;
+  const listProducts = state.data!.listProducts;
 
   useEffect(() => {
     setIdProduct(id);
@@ -36,7 +49,11 @@ export function ViewProduct() {
     <ContentContainer>
       <Header />
       <Container>
-        <Product id={idProduct} typeProduct={typeProduct} />
+        <Product
+          id={idProduct}
+          typeProduct={typeProduct}
+          listProducts={listProducts}
+        />
       </Container>
     </ContentContainer>
   );
