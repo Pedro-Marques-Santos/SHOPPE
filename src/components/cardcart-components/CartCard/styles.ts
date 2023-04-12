@@ -10,6 +10,7 @@ export const Container = styled.div`
   border-bottom: 1px solid #d8d8d8;
 
   i {
+    height: 27px;
     z-index: 2;
     cursor: pointer;
     position: relative;

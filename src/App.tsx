@@ -8,28 +8,31 @@ import { GlobalStyle } from "./styles/global";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ProductsProvider } from "./context/Products";
+import { ProductsLocalStorageProvider } from "./context/ProductsLocalStorage";
 
 export function App() {
   return (
     <ProductsProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-        </Routes>
-        <Routes>
-          <Route path="/OurStory" element={<OurStory />}></Route>
-        </Routes>
-        <Routes>
-          <Route path="/Shop" element={<Shop />}></Route>
-        </Routes>
-        <Routes>
-          <Route path="/ViewProduct" element={<ViewProduct />}></Route>
-        </Routes>
-        <Routes>
-          <Route path="/ShoppingCart" element={<ShoppingCart />}></Route>
-        </Routes>
-      </BrowserRouter>
-      <GlobalStyle />
+      <ProductsLocalStorageProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+          </Routes>
+          <Routes>
+            <Route path="/OurStory" element={<OurStory />}></Route>
+          </Routes>
+          <Routes>
+            <Route path="/Shop" element={<Shop />}></Route>
+          </Routes>
+          <Routes>
+            <Route path="/ViewProduct" element={<ViewProduct />}></Route>
+          </Routes>
+          <Routes>
+            <Route path="/ShoppingCart" element={<ShoppingCart />}></Route>
+          </Routes>
+        </BrowserRouter>
+        <GlobalStyle />
+      </ProductsLocalStorageProvider>
     </ProductsProvider>
   );
 }

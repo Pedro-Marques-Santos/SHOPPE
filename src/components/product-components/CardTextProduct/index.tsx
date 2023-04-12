@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ButtonAddCart } from "../ButtonAddCart";
 import { QtdProduct } from "../QntProduct";
 
@@ -12,6 +12,9 @@ import {
   SizeAndCategory,
   Title,
 } from "./styles";
+import { ProductsLocalStorageContext } from "../../../context/ProductsLocalStorage";
+
+import { v4 as uuidv4 } from "uuid";
 
 interface IProduct {
   name: string;
@@ -21,6 +24,7 @@ interface IProduct {
   id: number;
   img2?: string;
   qtd?: number;
+  idcard?: string;
 }
 
 interface ICardTextProduct {
@@ -38,6 +42,7 @@ interface ICardTextProduct {
     id: number;
     img2?: string;
     qtd?: number;
+    idcard?: string;
   };
 }
 
@@ -51,6 +56,9 @@ export function CardTextProduct({
 }: ICardTextProduct) {
   const [qtd, setQtd] = useState(1);
   const [listProducts, setListProducts] = useState<IProduct[]>([]);
+  const { reloadListProductsLocalStorage } = useContext(
+    ProductsLocalStorageContext
+  );
 
   useEffect(() => {
     if (localStorage.getItem("products")) {
@@ -62,16 +70,18 @@ export function CardTextProduct({
     product = {
       ...product,
       qtd: qtd,
+      idcard: uuidv4(),
     };
     setListProducts([...listProducts, product]);
-    localStorage.setItem("products", JSON.stringify(listProducts));
   }
 
+  //os dados precisam ser renderizados para salvar os novos elementos
   useEffect(() => {
     if (listProducts.length > 0) {
       localStorage.setItem("products", JSON.stringify(listProducts));
+      reloadListProductsLocalStorage();
     }
-  }, [listProducts]);
+  }, [listProducts, reloadListProductsLocalStorage]);
 
   return (
     <Container>

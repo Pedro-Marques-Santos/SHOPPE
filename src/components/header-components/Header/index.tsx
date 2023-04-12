@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -18,8 +18,11 @@ import {
 } from "./styles";
 
 import logo from "../../../assets/SHOPPE.svg";
+import { ProductsLocalStorageContext } from "../../../context/ProductsLocalStorage";
 
 export function Header() {
+  const productsLocalStorage = useContext(ProductsLocalStorageContext);
+
   const [progressBar, setProgessBar] = useState(false);
 
   const navegate = useNavigate();
@@ -60,7 +63,11 @@ export function Header() {
             </IconMenu>
             <IconMenu onClick={goPageCart}>
               <i className="material-symbols-outlined">shopping_cart</i>
-              <QtdCart>2</QtdCart>
+              <QtdCart>
+                {productsLocalStorage!.listProductsLocalStorage.length > 0
+                  ? productsLocalStorage!.listProductsLocalStorage.length.toString()
+                  : ""}
+              </QtdCart>
             </IconMenu>
           </Pages>
         </Menu>
