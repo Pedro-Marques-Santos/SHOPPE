@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   createContext,
   ReactNode,
@@ -25,6 +26,7 @@ type TProductsLocalStorageContextProps = {
   listProductsLocalStorage: IProduct[];
   reloadListProductsLocalStorage(): void;
   removeProductLocalStorage(product: IProduct): void;
+  modifyQtdProdctLocalStorage(product: IProduct, idcard: string): void;
 };
 
 export const ProductsLocalStorageContext =
@@ -35,13 +37,16 @@ export const ProductsLocalStorageContext =
 export function ProductsLocalStorageProvider({
   children,
 }: ProductsLocalStorageProviderProps) {
+  //lista de produtos atulizada pelo localstorage
   const [listProductsLocalStorage, setListProductsLocalStorage] = useState<
     IProduct[]
   >([]);
 
+  //lista de produtos local, recebe os dados do localstorage para atualizar ou editar os produtos
   const [listProducts, setListProducts] = useState<IProduct[]>(
-    JSON.parse(localStorage.getItem("products")!)
+    JSON.parse(localStorage.getItem("products")!) ?? []
   );
+  console.log(listProducts);
 
   useEffect(() => {
     if (localStorage.getItem("products")) {
@@ -66,7 +71,6 @@ export function ProductsLocalStorageProvider({
       localStorage.setItem("products", JSON.stringify(listProducts));
       reloadListProductsLocalStorage();
     }
-    console.log(listProducts);
   }, [listProducts, reloadListProductsLocalStorage]);
 
   function removeProductLocalStorage(product: IProduct) {
@@ -77,12 +81,20 @@ export function ProductsLocalStorageProvider({
     );
   }
 
+  function modifyQtdProdctLocalStorage(product: IProduct, idcard: string) {
+    let modifylistProducts = listProducts.map((p) =>
+      p.idcard !== idcard ? p : product
+    );
+    // console.log(modifylistProducts);
+  }
+
   return (
     <ProductsLocalStorageContext.Provider
       value={{
         listProductsLocalStorage,
         reloadListProductsLocalStorage,
         removeProductLocalStorage,
+        modifyQtdProdctLocalStorage,
       }}
     >
       {children}

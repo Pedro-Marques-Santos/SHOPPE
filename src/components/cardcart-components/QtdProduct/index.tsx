@@ -20,32 +20,32 @@ interface IProduct {
 }
 
 export function QtdProduct({ qtd, idcard }: IQtdProduct) {
-  // const { listProductsLocalStorage, removeProductLocalStorage } = useContext(
-  //   ProductsLocalStorageContext
-  // );
+  const { listProductsLocalStorage, modifyQtdProdctLocalStorage } = useContext(
+    ProductsLocalStorageContext
+  );
 
-  // function increaseQtd() {
-  //   let qtdproduct = ++qtd!;
+  function increaseQtd() {
+    let qtdproduct = ++qtd!;
 
-  //   let product = listProductsLocalStorage.find(
-  //     (product) => product.idcard === idcard
-  //   ) as IProduct;
+    let product = listProductsLocalStorage.find(
+      (product) => product.idcard === idcard
+    ) as IProduct;
 
-  //   product = {
-  //     ...product,
-  //     qtd: qtdproduct,
-  //   };
+    product = {
+      ...product,
+      qtd: qtdproduct,
+    };
 
-  //   console.log(product);
-  // }
+    modifyQtdProdctLocalStorage(product, idcard!);
+  }
 
-  // function decreaseQtd() {}
+  function decreaseQtd() {}
 
   return (
     <Container>
       <LessQtd>-</LessQtd>
       <Qtd>{qtd}</Qtd>
-      <MoreQtd>+</MoreQtd>
+      <MoreQtd onClick={increaseQtd}>+</MoreQtd>
     </Container>
   );
 }
