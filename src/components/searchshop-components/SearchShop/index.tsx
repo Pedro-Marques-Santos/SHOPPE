@@ -1,7 +1,6 @@
 import { Container, IconSearch, Input, Title } from "./styles";
 
 import { AiOutlineSearch } from "react-icons/ai";
-import { InputMinAndMax } from "../InputMinAndMax";
 
 interface ISearchShop {
   search: string;
@@ -12,14 +11,7 @@ interface ISearchShop {
   searchRangeMin: number;
 }
 
-export function SearchShop({
-  search,
-  setSearch,
-  searchRangeMax,
-  setSearchRangeMax,
-  searchRangeMin,
-  setSearchRangeMin,
-}: ISearchShop) {
+export function SearchShop({ search, setSearch }: ISearchShop) {
   return (
     <Container>
       <Title>Shop</Title>
@@ -34,12 +26,6 @@ export function SearchShop({
       <IconSearch>
         <AiOutlineSearch />
       </IconSearch>
-      <InputMinAndMax
-        searchRangeMax={searchRangeMax}
-        setSearchRangeMax={setSearchRangeMax}
-        searchRangeMin={searchRangeMin}
-        setSearchRangeMin={setSearchRangeMin}
-      />
     </Container>
   );
 }

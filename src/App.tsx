@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Home } from "./pages/Home";
 import { OurStory } from "./pages/OurStory";
 import { Shop } from "./pages/Shop";

@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { ButtonAddCart } from "../ButtonAddCart";
 import { QtdProduct } from "../QntProduct";
 
@@ -55,16 +54,9 @@ export function CardTextProduct({
   product,
 }: ICardTextProduct) {
   const [qtd, setQtd] = useState(1);
-  const [listProducts, setListProducts] = useState<IProduct[]>([]);
-  const { reloadListProductsLocalStorage } = useContext(
+  const { saveNewProductFromListProduct } = useContext(
     ProductsLocalStorageContext
   );
-
-  useEffect(() => {
-    if (localStorage.getItem("products")) {
-      setListProducts(JSON.parse(localStorage.getItem("products")!));
-    }
-  }, []);
 
   function handleAddToCard() {
     product = {
@@ -72,16 +64,9 @@ export function CardTextProduct({
       qtd: qtd,
       idcard: uuidv4(),
     };
-    setListProducts([...listProducts, product]);
-  }
 
-  //os dados precisam ser renderizados para salvar os novos elementos
-  useEffect(() => {
-    if (listProducts.length > 0) {
-      localStorage.setItem("products", JSON.stringify(listProducts));
-      reloadListProductsLocalStorage();
-    }
-  }, [listProducts, reloadListProductsLocalStorage]);
+    saveNewProductFromListProduct(product);
+  }
 
   return (
     <Container>

@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Container, LessQtd, MoreQtd, Qtd } from "./styles";
 import { ProductsLocalStorageContext } from "../../../context/ProductsLocalStorage";
 
@@ -39,11 +38,28 @@ export function QtdProduct({ qtd, idcard }: IQtdProduct) {
     modifyQtdProdctLocalStorage(product, idcard!);
   }
 
-  function decreaseQtd() {}
+  function decreaseQtd() {
+    if (qtd) {
+      if (qtd > 1) {
+        let qtdproduct = --qtd!;
+
+        let product = listProductsLocalStorage.find(
+          (product) => product.idcard === idcard
+        ) as IProduct;
+
+        product = {
+          ...product,
+          qtd: qtdproduct,
+        };
+
+        modifyQtdProdctLocalStorage(product, idcard!);
+      }
+    }
+  }
 
   return (
     <Container>
-      <LessQtd>-</LessQtd>
+      <LessQtd onClick={decreaseQtd}>-</LessQtd>
       <Qtd>{qtd}</Qtd>
       <MoreQtd onClick={increaseQtd}>+</MoreQtd>
     </Container>

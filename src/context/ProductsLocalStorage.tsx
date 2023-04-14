@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   createContext,
   ReactNode,
@@ -27,6 +26,7 @@ type TProductsLocalStorageContextProps = {
   reloadListProductsLocalStorage(): void;
   removeProductLocalStorage(product: IProduct): void;
   modifyQtdProdctLocalStorage(product: IProduct, idcard: string): void;
+  saveNewProductFromListProduct(product: IProduct): void;
 };
 
 export const ProductsLocalStorageContext =
@@ -46,7 +46,6 @@ export function ProductsLocalStorageProvider({
   const [listProducts, setListProducts] = useState<IProduct[]>(
     JSON.parse(localStorage.getItem("products")!) ?? []
   );
-  console.log(listProducts);
 
   useEffect(() => {
     if (localStorage.getItem("products")) {
@@ -63,6 +62,11 @@ export function ProductsLocalStorageProvider({
 
   function saveNewListProductsLocalStorage(products: IProduct[]) {
     setListProducts(products);
+    reloadListProductsLocalStorage();
+  }
+
+  function saveNewProductFromListProduct(product: IProduct) {
+    setListProducts([...listProducts, product]);
     reloadListProductsLocalStorage();
   }
 
@@ -85,7 +89,7 @@ export function ProductsLocalStorageProvider({
     let modifylistProducts = listProducts.map((p) =>
       p.idcard !== idcard ? p : product
     );
-    // console.log(modifylistProducts);
+    saveNewListProductsLocalStorage(modifylistProducts);
   }
 
   return (
@@ -95,6 +99,7 @@ export function ProductsLocalStorageProvider({
         reloadListProductsLocalStorage,
         removeProductLocalStorage,
         modifyQtdProdctLocalStorage,
+        saveNewProductFromListProduct,
       }}
     >
       {children}
