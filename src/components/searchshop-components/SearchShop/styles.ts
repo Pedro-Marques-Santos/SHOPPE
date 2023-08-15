@@ -16,7 +16,9 @@ export const Title = styled.div`
 `;
 
 export const Input = styled.div`
+  background: white;
   input {
+    background: white;
     margin-top: 50px;
     padding-bottom: 10px;
     padding-left: 10px;
